@@ -1,0 +1,196 @@
+Green Asian Wok
+Web Design Proposal
+STATUS
+Proposed
+OWNER
+Not assigned
+LAST UPDATED
+10 October 2026
+Authors
+Codex
+Reviewers
+Business owner and provider
+Related docs
+Website audit and three visual concepts
+Scope
+Customer-facing website and provider handoff
+1.  Abstract
+Green Asian Wok needs a clearer path from choosing food to placing an order. This proposal combines the website audit and review findings with a menu-led frontend, while retaining the existing ordering provider for checkout and fulfilment.
+Evidence was collected on 10 October 2026. Three visual concepts are delivered separately. This is a proposed system design, not a shipped website or an assertion about provider capabilities. Operational contacts, schedules and integration access require confirmation.
+2.  Goals and Non-Goals
+Goals
+Non-goals
+Show useful dishes and prices before ordering
+Build a second payment or order ledger
+Make contact and hours consistent
+Infer service quality from six ratings
+Support mobile, keyboard and readable states
+Assert dietary or health claims without approval
+Verify the provider handoff before release
+Assume undocumented provider APIs
+3.  Background and Problem Statement
+The current homepage prioritises a large food banner and app promotion. Desktop ordering then adds a fulfilment page and another banner before dishes. Maps and the site show different phone numbers; collection hours are difficult to interpret across midnight.
+Google showed 4.5 stars from six ratings. Four visible written reviews praised flavour, value or portions; the visible two-star rating had no comment. Five individual records were exposed. These limited observations support honest dish discovery, not claims about delivery reliability.
+4.  Proposed Architecture
+Figure 1. Proposed website and ordering provider boundary.
+Core components
+Component
+Responsibility
+Primary storage
+Failure behavior
+Website UI
+Accessible menu, search, mode choice and item options
+Static build and content delivery network
+Useful error and official ordering route
+Menu content
+Dish names, prices, allergens and option groups
+Versioned business-approved content file
+Reject invalid publication and retain approved content
+Business record
+Contact number, address and day-specific availability
+Approved location and schedule record
+Hide unconfirmed values and explain unavailable modes
+Ordering provider
+Current prices, checkout, payment and accepted order status
+Existing provider service and order records
+No unconfirmed success state or duplicate submission
+Verification
+Responsive, keyboard, total and supported handoff checks
+Aggregate checks and monitoring records
+Flag broken order routes and prevent unsafe release
+5.  Request Lifecycle
+A customer opens the homepage or menu. Browsing should work without an account or address; delivery and collection are explicit choices.
+The frontend validates required item options and quantities. The provider validates current availability, service area and final prices at checkout.
+Load a business-approved menu version, contact record and day-specific schedule. Treat unconfirmed operational data as unpublished.
+Show dishes, prices and allergen information. Selecting a dish opens options and an updated total before adding it to the basket.
+Store only a transient basket if supported. The provider remains responsible for durable order and payment records.
+Handoff through a supported provider route. If an integration is unavailable, use its official ordering page and make that transition clear.
+Only provider-confirmed success represents an accepted order. Measure menu engagement and successful handoff without recording personal payloads.
+6.  API and Data Contracts
+Primary data contract
+Field
+Type
+Required
+Description
+item_id
+string
+Yes
+Stable provider or approved internal identifier
+name
+string
+Yes
+Business-approved dish name
+category
+string
+Yes
+One category from the menu taxonomy
+price_minor
+integer
+Yes
+Non-negative cents; options are separate
+currency
+enum
+Yes
+EUR for this location
+allergens
+array
+Yes
+Approved labels; empty only if verified
+options
+array
+Yes
+Required/optional groups and surcharges
+Contract guarantees
+Validate the menu contract before publication; reject missing prices, ambiguous currency and unapproved allergen labels.
+Assign stable item IDs and a version to each approved menu; never use display text as the identifier.
+Retain the menu version and verification timestamp. At checkout, the provider must revalidate price and availability.
+The content contract is the website display source. It is not a payment ledger or proof of restaurant order acceptance.
+The proposed display contract is supplied in 
+menu-contract.schema.json. Provider API access and basket transfer remain unconfirmed.
+7. Consistency, Idempotency, and Replay
+Repeated menu reads may be cached. Basket additions must not be duplicated by retries. Payment and order idempotency belong to the provider; this proposal does not assume undocumented provider guarantees. A failed handoff must never display order success.
+Scenario
+Expected behavior
+Reasoning
+Repeated add action
+One intentional addition per activation
+Prevent double taps and pending retries
+Invalid menu publication
+Keep last approved version
+Avoid misleading prices or allergens
+Provider unavailable
+Explain issue; no order confirmation
+Do not imply acceptance without provider success
+Menu changes in basket
+Revalidate before payment
+Final price belongs to current provider state
+8. Security and Privacy Considerations
+Public browsing needs no login. Restrict menu publication to authorised staff; use provider-supported authentication for ordering administration.
+Collect no address or phone number on the marketing site unless a supported flow requires it. Exclude payment, address and contact values from analytics.
+Keep provider credentials server-side if an approved API is used. No secret belongs in browser code or static content.
+Preview menu changes before publishing. Operational support views should expose only the data needed to resolve an issue.
+The business and provider must confirm retention and privacy responsibilities. Keep analytics aggregate and document deletion and support routes before launch.
+9.  Operational Readiness
+Signal
+SLO or alert
+Owner
+Launch gate
+Order entry
+All route checks pass
+Site owner
+Required
+Menu visibility
+Useful item within opening viewport
+Designer
+Required
+Handoff failure
+Zero broken supported order links
+Developer
+Required
+Content drift
+Contacts and menu checked at release
+Business
+Required
+Accessibility
+Core journey works with keyboard
+Developer
+Required
+Rollout constraint: Verify in preview, test provider handoff, retain rollback and publish only after the business confirms operational content. Targets are proposed acceptance gates, not measured production SLOs.
+10. Alternatives Considered
+Alternative
+Why it was considered
+Why it was not selected
+Keep existing template
+Minimal engineering effort
+Leaves discovery and content problems
+Custom checkout
+Full control of the journey
+Adds payment and fulfilment responsibilities
+Marketplace-only site
+Existing ordering infrastructure
+Less control over brand and direct discovery
+Native app first
+Potential repeat ordering convenience
+Creates installation friction for first visits
+11. Open Questions
+Which phone number is correct: Maps 01 265 9610 or the website 01 491 0221 / 085 199 6556?
+What are the correct day-specific delivery and collection intervals, including the after-midnight boundary?
+Does the existing provider support stable menu links, mode persistence, basket handoff or a documented API?
+Who approves menu prices, allergens, real food photography, brand assets and listing updates?
+12. Decision and Next Steps
+Recommended architecture: build the selected visual concept around a verified menu record and retain provider ordering. Confirm operational data, replace illustrative assets, implement interactions, then test the complete browse-to-handoff path. Release only after visual, accessibility and provider checks pass.
+Milestone
+Deliverable
+Exit criteria
+M1
+Verified content and selected concept
+Business confirms disputed details and assets
+M2
+Responsive menu interactions
+Keyboard, options and totals pass
+M3
+Verified provider handoff
+Real supported flow checked in test mode
+M4
+Production release
+Visual QA, rollback and content checks pass

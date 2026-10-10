@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Proposed Green Asian Wok menu display contract",
+  "description": "A proposed display contract. This is not a documented existing provider API, payment ledger or guarantee of allergen suitability.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "menu_version", "verified_at", "items"],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "menu_version": { "type": "string", "minLength": 1 },
+    "verified_at": { "type": "string", "format": "date-time" },
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["item_id", "name", "category", "price_minor", "currency", "allergens", "options"],
+        "properties": {
+          "item_id": { "type": "string", "minLength": 1 },
+          "name": { "type": "string", "minLength": 1 },
+          "category": { "type": "string", "minLength": 1 },
+          "price_minor": { "type": "integer", "minimum": 0 },
+          "currency": { "const": "EUR" },
+          "allergens": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+          "options": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["group_id", "name", "required", "min_select", "max_select", "choices"],
+              "properties": {
+                "group_id": { "type": "string", "minLength": 1 },
+                "name": { "type": "string", "minLength": 1 },
+                "required": { "type": "boolean" },
+                "min_select": { "type": "integer", "minimum": 0 },
+                "max_select": { "type": "integer", "minimum": 1 },
+                "choices": {
+                  "type": "array", "minItems": 1,
+                  "items": {
+                    "type": "object", "additionalProperties": false,
+                    "required": ["choice_id", "name", "surcharge_minor"],
+                    "properties": {
+                      "choice_id": { "type": "string", "minLength": 1 },
+                      "name": { "type": "string", "minLength": 1 },
+                      "surcharge_minor": { "type": "integer", "minimum": 0 }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
