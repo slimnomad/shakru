@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#101913" />
+    <meta
+      name="description"
+      content="Big flavour. Local wok. Chinese & Asian takeaway at 283 Harold’s Cross Road, Dublin 6W. Explore the menu and order for delivery or collection."
+    />
+    <title>Green Asian Wok | Harold’s Cross, Dublin</title>
+    <link rel="icon" href="./assets/icons/moped.svg" type="image/svg+xml" />
+    <link
+      rel="preload"
+      href="./assets/fonts/anton.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
+    <link rel="preload" href="./assets/photos/hero.webp" as="image" />
+    <link rel="stylesheet" href="./src/style.css" />
+    <script src="./src/script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="hero-shell">
+      <img
+        class="hero-photo"
+        src="./assets/photos/hero.webp"
+        alt=""
+        width="1619"
+        height="971"
+        fetchpriority="high"
+      />
+      <header class="site-header frame">
+        <a class="brand" href="./index.html" aria-label="Green Asian Wok home">
+          <img
+            src="./assets/logo.webp"
+            alt="Green Asian Wok — Harold’s Cross"
+            width="620"
+            height="132"
+          />
+        </a>
+        <nav class="main-nav" aria-label="Main navigation">
+          <button class="nav-link" type="button" data-open-menu>Menu</button>
+          <button class="nav-link" type="button" data-open-location>
+            Find us
+          </button>
+          <a
+            class="button header-order"
+            href="https://www.greenasianwok.ie/selectOrderType?rId=3238"
+            >Order online</a
+          >
+        </nav>
+      </header>
+      <main id="main">
+        <section class="hero frame" aria-labelledby="hero-title">
+          <p class="hero-intro">
+            Chinese &amp; Asian takeaway in <strong>Harold’s Cross.</strong>
+          </p>
+          <h1 id="hero-title">
+            <span>BIG FLAVOUR.</span><span class="lime">LOCAL WOK.</span>
+          </h1>
+          <div class="hero-actions">
+            <a
+              class="button primary-order"
+              href="https://www.greenasianwok.ie/selectOrderType?rId=3238"
+              >Order online
+              <img
+                class="icon dark-icon"
+                src="./assets/icons/arrow-right.svg"
+                alt=""
+            /></a>
+            <button class="text-link" type="button" data-open-menu>
+              See the menu
+            </button>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <section class="service-strip" aria-label="Delivery and location">
+      <div class="service-inner frame">
+        <a
+          href="https://www.greenasianwok.ie/selectOrderType?rId=3238"
+          class="service delivery"
+          ><img
+            class="service-icon lime-icon"
+            src="./assets/icons/moped.svg"
+            alt=""
+          />
+          <span>Delivery &amp; collection</span></a
+        >
+        <button class="service address" type="button" data-open-location>
+          <img
+            class="service-icon lime-icon"
+            src="./assets/icons/map-pin.svg"
+            alt=""
+          />
+          <span>283 Harold’s Cross Road, Dublin 6W</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="favourites frame" aria-labelledby="favourites-title">
+      <div class="favourites-intro">
+        <h2 id="favourites-title">
+          <span>GOOD FOOD.</span><span class="lime">NO GUESSWORK.</span>
+        </h2>
+        <div class="short-rule" aria-hidden="true"></div>
+        <button class="text-link view-menu" type="button" data-open-menu>
+          View menu
+          <img class="icon" src="./assets/icons/arrow-right.svg" alt="" />
+        </button>
+      </div>
+      <button
+        class="dish-card"
+        type="button"
+        data-dish="sweet-sour"
+        aria-label="View Sweet & Sour Chicken, €11.00"
+      >
+        <img
+          class="dish-photo"
+          src="./assets/photos/sweet-sour.webp"
+          alt="Sweet and sour chicken with peppers and onions on a dark plate"
+          width="900"
+          height="900"
+          loading="lazy"
+        />
+        <span class="dish-copy"
+          ><span class="dish-name">Sweet &amp; Sour Chicken</span
+          ><span class="dish-price">€11.00</span></span
+        >
+      </button>
+      <button
+        class="dish-card"
+        type="button"
+        data-dish="salt-chilli"
+        aria-label="View Salt & Chilli Chicken Strips, €6.80"
+      >
+        <img
+          class="dish-photo"
+          src="./assets/photos/salt-chilli.webp"
+          alt="Crispy salt and chilli chicken topped with chillies and spring onions"
+          width="900"
+          height="900"
+          loading="lazy"
+        />
+        <span class="dish-copy"
+          ><span class="dish-name">Salt &amp; Chilli Chicken Strips</span
+          ><span class="dish-price">€6.80</span></span
+        >
+      </button>
+    </section>
+
+    <footer class="review-strip frame">
+      <img
+        src="./assets/google.png"
+        class="google-mark"
+        alt="Google"
+        width="36"
+        height="36"
+      />
+      <p>4.5 on Google · 6 reviews</p>
+      <a
+        class="text-link"
+        href="https://maps.app.goo.gl/bk5NyCFTQz4Ywi8aA?g_st=ic"
+        target="_blank"
+        rel="noopener noreferrer"
+        >Read the reviews<span class="sr-only"> (opens in a new tab)</span></a
+      >
+    </footer>
+
+    <dialog id="menu-dialog" class="menu-dialog" aria-labelledby="menu-title">
+      <div class="dialog-top">
+        <button id="back-menu" class="text-link back-menu" type="button" hidden>
+          Back to menu</button
+        ><button
+          class="icon-button close-dialog"
+          type="button"
+          aria-label="Close menu"
+        >
+          <img class="icon" src="./assets/icons/x.svg" alt="" />
+        </button>
+      </div>
+      <div id="menu-view">
+        <h2 id="menu-title" class="dialog-title">
+          FIND YOUR <span class="lime">FAVOURITE.</span>
+        </h2>
+        <p class="dialog-intro">
+          A few favourites from our wok. Explore the full menu when you order.
+        </p>
+        <label class="search-field"
+          ><img class="icon" src="./assets/icons/search.svg" alt="" /><span
+            class="sr-only"
+            >Search dishes</span
+          ><input
+            id="menu-search"
+            type="search"
+            placeholder="Search dishes…"
+            autocomplete="off"
+        /></label>
+        <div
+          class="menu-filters"
+          role="group"
+          aria-label="Filter menu categories"
+        >
+          <button
+            class="filter-button"
+            type="button"
+            data-category="all"
+            aria-pressed="true"
+          >
+            All favourites
+          </button>
+          <button
+            class="filter-button"
+            type="button"
+            data-category="mains"
+            aria-pressed="false"
+          >
+            Mains
+          </button>
+          <button
+            class="filter-button"
+            type="button"
+            data-category="starters"
+            aria-pressed="false"
+          >
+            Starters
+          </button>
+        </div>
+        <p
+          id="results-count"
+          class="sr-only"
+          role="status"
+          aria-live="polite"
+        ></p>
+        <div id="menu-results" class="menu-results"></div>
+        <div id="menu-empty" class="empty-state" hidden>
+          <h3>No dishes found.</h3>
+          <p>Try another search or see all favourites.</p>
+          <button id="reset-search" class="text-link" type="button">
+            Reset filters
+          </button>
+        </div>
+        <a
+          class="button full-menu-link"
+          href="https://www.greenasianwok.ie/shopDetail?rId=3238"
+          >See the full menu &amp; order
+          <img
+            class="icon dark-icon"
+            src="./assets/icons/arrow-right.svg"
+            alt=""
+        /></a>
+      </div>
+      <div id="dish-view" hidden></div>
+    </dialog>
+
+    <dialog
+      id="location-dialog"
+      class="location-dialog"
+      aria-labelledby="location-title"
+    >
+      <button
+        class="icon-button close-dialog"
+        type="button"
+        aria-label="Close location"
+      >
+        <img class="icon" src="./assets/icons/x.svg" alt="" />
+      </button>
+      <img
+        class="location-pin lime-icon"
+        src="./assets/icons/map-pin.svg"
+        alt=""
+      />
+      <h2 id="location-title" class="dialog-title">
+        YOUR <span class="lime">LOCAL WOK.</span>
+      </h2>
+      <address>283 Harold’s Cross Road<br />Dublin 6W, D6W K021</address>
+      <p>Drop in for collection or order online for delivery.</p>
+      <a
+        class="button"
+        href="https://www.google.com/maps/dir/?api=1&amp;destination=283+Harold%27s+Cross+Road+Dublin+6W+D6W+K021"
+        target="_blank"
+        rel="noopener noreferrer"
+        >Get directions
+        <img
+          class="icon dark-icon"
+          src="./assets/icons/arrow-right.svg"
+          alt=""
+        /><span class="sr-only"> (opens in a new tab)</span></a
+      >
+    </dialog>
+    <noscript
+      ><p class="no-script">
+        Browse the
+        <a href="https://www.greenasianwok.ie/shopDetail?rId=3238"
+          >full menu and order online</a
+        >. Find us at 283 Harold’s Cross Road, Dublin 6W, D6W K021.
+      </p></noscript
+    >
+  </body>
+</html>
